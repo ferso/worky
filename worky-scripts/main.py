@@ -127,7 +127,7 @@ class NarutoChars:
         self.endTime = time.time()
         timer = round((self.endTime - self.startTime),2)
         print('Finished in ', ("--- %s seconds ---" % (timer)) )
-        print("total nodes [%s] " % len(self.nodes))
+        # print("total nodes [%s] " % len(self.nodes))
         print('total records saved in database  [%s]'  % len(self.characters ))
         print('total records inserted in database  [%s]'  % len(self.inserted ))
         print('total records updated  in database  [%s]'  % len(self.updated ))
@@ -137,5 +137,5 @@ class NarutoChars:
 # Run ------
 Naruto = NarutoChars()
 Naruto.getAllChars('https://naruto.fandom.com/wiki/Special:ExportRDF/Category:Characters?xmlmime=rdf')
-# Naruto.getCharPageData('https://naruto.fandom.com/wiki/Zetsu','Zetsu')
+# Naruto.getCharPageData('https://naruto.fandom.com/wiki/Zetsu','Zetsu')0
 Naruto.report()
