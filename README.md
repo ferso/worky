@@ -14,7 +14,7 @@ La aplicación está contruida en 3 partes de acuerdo a los requerimientos del c
   Aplicación realizada en Vue.js que presenta los datos mediante la api
 
 
-  ## Worky-scripts
+  ### Worky-scripts
   ------------  
   - Requiere Python 3
   - Para arrancar el script es necesario desde la terminal ejecutar
@@ -37,7 +37,7 @@ La aplicación está contruida en 3 partes de acuerdo a los requerimientos del c
 
   ```
 
-  ## Worky-api
+  ### Worky-api
   ------------
   - Requiere última versión de nodejs
   - Para arrancar la aplicación hacer lo siguiente:
@@ -63,6 +63,5 @@ La aplicación está contruida en 3 partes de acuerdo a los requerimientos del c
 
   ```
 
-  ## Worky-frontend
+  ### Worky-frontend
   ------------
-  
