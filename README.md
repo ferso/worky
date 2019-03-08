@@ -81,14 +81,15 @@ La aplicación se conecta a MongoDb utilizandio la configuraxión default de Mon
 
 
   - Para ejecutar los tests
-  ```
-  sudo npm install mocha -g
-  ------------------------------------
 
-  mocha tests/lifecycle.test.js tests/integration/**/*.test.js
-  ------------------------------------
+    ```
+    sudo npm install mocha -g
+    ------------------------------------
 
-  ```
+    mocha tests/lifecycle.test.js tests/integration/**/*.test.js
+    ------------------------------------
+
+    ```
 
   ### Worky-frontend
   ------------
