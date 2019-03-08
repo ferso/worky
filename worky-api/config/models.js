@@ -35,7 +35,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
-  // schema: true,
+  schema: true,
 
 
   /***************************************************************************
@@ -71,7 +71,7 @@ module.exports.models = {
   attributes: {
     createdAt: { type: 'number', autoCreatedAt: true, },
     updatedAt: { type: 'number', autoUpdatedAt: true, },
-    id: { type: 'number', autoIncrement: true, },
+    id: { type: 'string', columnName: '_id' },
     //--------------------------------------------------------------------------
     //  /\   Using MongoDB?
     //  ||   Replace `id` above with this instead:
@@ -85,7 +85,17 @@ module.exports.models = {
     //--------------------------------------------------------------------------
   },
 
-
+  beforeCreate: function (attrs, next) {
+    let date = moment(new Date()).tz('America/Mexico_City').toUTCDate();
+    attrs.createdAt = date;
+    attrs.updatedAt = date;
+    return next();
+  },
+  beforeUpdate: function (attrs, next) {
+    let date = moment(new Date()).tz('America/Mexico_City').toUTCDate();
+    attrs.updatedAt = date
+    return next();
+  },
   /******************************************************************************
   *                                                                             *
   * The set of DEKs (data encryption keys) for at-rest encryption.              *
