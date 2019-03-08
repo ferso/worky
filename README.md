@@ -86,7 +86,20 @@ La aplicación se conecta a MongoDb utilizandio la configuraxión default de Mon
         adapter: 'sails-mongo',
         url: 'mongodb://127.0.0.1:27017/worky',  <---- Aquí
       }
-     ```
+      ```
 
   ### Worky-frontend
   ---------------
+  - Para arrancar la aplicación hacer lo siguiente:
+  ```
+  cd worky-frontend
+  ------------------------------------
+
+  yarn add vuex --save
+  yarn add whatwg-fetch --save
+  yarn add bootstrap-vue --save
+  ------------------------------------
+  yarn start
+  ------------------------------------
+
+  ```
