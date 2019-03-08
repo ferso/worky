@@ -37,7 +37,6 @@ class NarutoChars:
             # print(data['content'][2])
             result = self.collection.update_one(query,{ "$set": data })
             self.updated.append(data)
-
         #set data for report
         self.characters.append(data)
 
@@ -95,18 +94,23 @@ class NarutoChars:
             self.charData = {}
             #define the segments of the content
             self.charData['name']    = name
+            self.charData['slug']    = self.getCharSlugname(uri)
             self.charData['link']    = urllib.parse.unquote(uri)
             self.charData['img']     = self.getCharThubmnail()
             self.charData['content'] = self.getCharContent()
+            self.charData['infobox'] = self.getCharInfobox()
 
-            print(self.index ,':', self.charData['link']  )
-            print('=============================================================')
+            # print(self.index ,':', self.charData['link']  )
+            # print('=============================================================')
             self.index = self.index + 1
             #save to mongo
             self.save(self.charData)
 
         else:
             errors.apppedn({'name':name})
+
+    def getCharSlugname(self,name):
+        return name.split("/")[-1]
 
     def getCharThubmnail(self):
         td   = self.soup.find("td",  class_="imagecell")
@@ -116,6 +120,29 @@ class NarutoChars:
             img  = td.findChildren('img')
             img  = img[0]['data-src']
         return img
+
+    def getCharInfobox(self):
+        infobox = self.soup.find('table', {'class':'infobox'})
+        infobox['class'] = 'infobox';
+
+        for tag in infobox.find_all('img', class_="lzy"):
+            tag['onload'] = None
+            tag['src']    = tag['data-src']
+
+        ultisup = infobox.find('span', class_="ultisup-image-popup")
+        if(ultisup):
+            ultisup.extract()
+
+        ultisup = infobox.find('span', class_="link-internal")
+        if(ultisup):
+            ultisup.extract()
+
+        ultisup = infobox.find('th', class_="mainheader")
+        if(ultisup):
+            ultisup.extract()
+
+        # print(infobox)
+        return str(infobox)
 
     def getCharContent(self):
         #set nodes data
@@ -128,10 +155,8 @@ class NarutoChars:
             node = {}
             headline    = segment.text.strip()
             content     = self.geContentSegment(segment)
-            text         = self.geContentStrSegment(segment)
             node['title']   = headline
             node['content'] = content
-            node['text']    = text
             nodes.append(node)
         return nodes
 
@@ -143,15 +168,6 @@ class NarutoChars:
                 html.append(str(node))
             else:
               return "".join(html)
-
-    def geContentStrSegment(self,segment):
-        str = []
-        nodes = segment.findNextSiblings()
-        for node in nodes:
-            if(node.name != 'h2'):
-                str.append(node.prettify())
-            else:
-              return "".join(str)
 
     def report(self):
         self.endTime = time.time()

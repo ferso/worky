@@ -6,14 +6,12 @@
  */
 
 module.exports = {
-
   attributes: {
-
     name:'string',
+    slug:'string',
     link:'string',
     img:'string',
+    infobox:'string',
     content: { type: 'json', columnType: 'array' }
-
   },
-
 };

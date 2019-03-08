@@ -1,8 +1,11 @@
 <template>
-  <div class="col-md-12">
-    <div v-if="segment.content" class="segment-content">
+  <div class="row ">
+    <div class="col-md-12">
+      <div v-if="segment.content" class="segment-content">
+        <h3>{{segment.title}}</h3>
         <span v-html="segment.content"></span>
-    </div>
+      </div>
+   </div>
  </div>
 </template>
 <script>
@@ -18,8 +21,11 @@ export default {
 <style lang="scss">
   .segment-content{
     color:#fff;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding: 30px 0 ;
+    h3{
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 0 20px 0 ;
+      margin-bottom: 20px;
+    }
     .tright{
       float:right;
       margin-left: 20px;

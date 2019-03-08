@@ -21,8 +21,8 @@ export default {
   },
   computed: {
     getLink() {
-      return  '/char/'+this.character.id
-    }
+      return  `/char/${this.character.id}/${this.character.slug}`
+    },
   }
 };
 </script>

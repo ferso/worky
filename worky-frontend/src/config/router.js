@@ -20,7 +20,7 @@ export default new Router({
       component: About
     },
     {
-      path: '/char/:id',
+      path: '/char/:id/:slug',
       component: Char
     }
   ]

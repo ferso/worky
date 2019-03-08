@@ -6,7 +6,6 @@
       <div></div>
       <div></div>
     </div>
-    Loading ...
   </div>
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -17,25 +16,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color:#0f8789;
+    color:#fff;
   }
   .lds-ring {
     display: inline-block;
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height:90px;
   }
   .lds-ring div {
     box-sizing: border-box;
     display: block;
     position: absolute;
-    width: 94px;
-    height: 94px;
+    width: 64px;
+    height: 64px;
     margin: 6px;
-    border: 12px solid #0da8aa;
+    border: 8px solid rgba(255,255,255,0.8);
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #0da8aa transparent transparent transparent;
+    border-color: rgba(255,255,255,0.8) transparent transparent transparent;
   }
   .lds-ring div:nth-child(1) {
     animation-delay: -0.45s;

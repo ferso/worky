@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <div class="display">
+      <div class="container d-flex justify-content-center">
+        <img src="/static/imgs/Naruto_Shippūden_Logo.png" class="logo" />
+      </div>
+
       <div v-if="characters.length > 0"  class="overflow-auto">
         <b-pagination-nav
         limit="15"
@@ -29,7 +32,6 @@
             :key="character.name + index" />
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -84,10 +86,14 @@ export default {
 <style lang="scss">
 .home{
   height: 100%;
+  padding-top: 50px;
   padding-bottom: 100px;
+  background: url('/static/imgs/Pane-dirtDark.jpg');
 }
-.display{
-  height: 90%;
+.logo{
+  margin: auto;
+  width: 250px;
+  margin-bottom: 30px;
 }
 .page-link{
   border-color:#0f8789;
