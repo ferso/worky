@@ -1,7 +1,9 @@
 <template>
   <div class="char">
     <div v-if="char" class="container p-5">
+      <a :href="char.link" target="_blank" class="float-right btn btn-outline-warning flink"> <i class="fas fa-link"></i> Fandom Link </a>
       <h2>{{char.name}}</h2>
+
       <div class="row ">
         <CharSegments
           v-for="(segment, index) in char.content"
@@ -46,6 +48,12 @@ export default {
     background: url('/static/imgs/Pane-dirtDark.jpg');
     h2{
       color:#fff;
+      margin-bottom: 30px;
+    }
+
+    a.flink{
+      font-size: 11px;
+      color:yellow
     }
   }
 </style>

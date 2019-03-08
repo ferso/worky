@@ -20,7 +20,7 @@ class NarutoChars:
         #start process timer
         self.startTime  = time.time()
     def setDb(self,database='worky'):
-        self.Mongo      = MongoClient('localhost', 27017)        
+        self.Mongo      = MongoClient('localhost', 27017)
         self.db         = self.Mongo[database]
         self.collection = self.db['characters']
     def save(self,data):
@@ -34,6 +34,7 @@ class NarutoChars:
             self.inserted.append(data)
         else:
             data['updatedAt'] = now;
+            # print(data['content'][2])
             result = self.collection.update_one(query,{ "$set": data })
             self.updated.append(data)
 
@@ -60,11 +61,22 @@ class NarutoChars:
             name    = key.text;
             #get html raw of each character page
             self.getCharPageData(uri,name)
+            # break
 
     def removeGarbageFromDocument(self):
         [s.extract() for s in self.soup('script')]
         [s.extract() for s in self.soup('footer')]
         [s.extract() for s in self.soup('noscript')]
+        [s.extract() for s in self.soup('sup', class_="reference")]
+
+    def depureLinks(self):
+        for tag in self.soup.find_all('a', href=True):
+            tag.name = 'span'
+
+    def  renderFigureTag(self):
+        for tag in self.soup.find_all('img', class_="thumbimage"):
+            tag['onload'] = None
+            tag['src']    = tag['data-src']
 
     def getCharPageData(self,uri,name):
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.0 Safari/537.36'}
@@ -75,6 +87,10 @@ class NarutoChars:
             self.soup = BeautifulSoup(response.text, 'html.parser')
             # remove all garbage tags from the document
             self.removeGarbageFromDocument()
+            # depure a tags in the document
+            self.depureLinks()
+            # render figure images in the document
+            self.renderFigureTag()
             #prepare the object for character data
             self.charData = {}
             #define the segments of the content
@@ -106,16 +122,18 @@ class NarutoChars:
         nodes = []
         #get segments from content
         segments = self.soup.find_all('h2', {'class':''})
-        # segments[-1]
+        segments[-1]
         #iterate for each h2 segment
         for segment in segments:
             node = {}
             headline    = segment.text.strip()
             content     = self.geContentSegment(segment)
+            text         = self.geContentStrSegment(segment)
             node['title']   = headline
             node['content'] = content
+            node['text']    = text
             nodes.append(node)
-        return nodes;
+        return nodes
 
     def geContentSegment(self,segment):
         html = []
@@ -125,6 +143,15 @@ class NarutoChars:
                 html.append(str(node))
             else:
               return "".join(html)
+
+    def geContentStrSegment(self,segment):
+        str = []
+        nodes = segment.findNextSiblings()
+        for node in nodes:
+            if(node.name != 'h2'):
+                str.append(node.prettify())
+            else:
+              return "".join(str)
 
     def report(self):
         self.endTime = time.time()
