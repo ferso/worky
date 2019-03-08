@@ -49,11 +49,11 @@ La aplicación se conecta a MongoDb utilizandio la configuraxión default de Mon
 
   Naruto = NarutoChars()
   Naruto.setDb(database) <----- Aquí
-
-```
+  ```
 
   ### Worky-api
   ------------
+
   - Requiere última versión de nodejs
   - Para arrancar la aplicación hacer lo siguiente:
   ```
@@ -68,18 +68,6 @@ La aplicación se conecta a MongoDb utilizandio la configuraxión default de Mon
 
   ```
   - El api responde en https://localhost:1337
-
-    * Si se requiere configurar una base de datos de mongo con una configuración diferente, lo debes hacer en worky-api/config/datastores.js
-
-    ```
-    default: {
-      adapter: 'sails-mongo',
-      url: 'mongodb://127.0.0.1:27017/worky',  <---- Aquí
-    },
-
-  ```
-
-
   - Para ejecutar los tests
 
     ```
@@ -91,5 +79,14 @@ La aplicación se conecta a MongoDb utilizandio la configuraxión default de Mon
 
     ```
 
-### Worky-frontend
-  ------------
+    * Si se requiere configurar una base de datos de mongo con una configuración diferente, lo debes hacer en worky-api/config/datastores.js
+
+      ```
+      default: {
+        adapter: 'sails-mongo',
+        url: 'mongodb://127.0.0.1:27017/worky',  <---- Aquí
+      }
+     ```
+
+  ### Worky-frontend
+  ---------------
