@@ -14,6 +14,8 @@ La aplicación está contruida en 3 partes de acuerdo a los requerimientos del c
   Aplicación realizada en Vue.js que presenta los datos mediante la api
 
 
+La aplicación se conecta a MongoDb utilizandio la configuraxión default de Mongo (localhost, 27017)
+
   ### Worky-scripts
   ------------  
   - Requiere Python 3
@@ -34,8 +36,21 @@ La aplicación está contruida en 3 partes de acuerdo a los requerimientos del c
   ```
   pytest
   ------------------------------------
+  ```
+
+  * Si se requiere configurar una base de datos de mongo con una configuración diferente, lo debes hacer en el archivo main.py
 
   ```
+  database = {
+      'port':27017,
+      'uri':'localhost',
+      'name':'test_worky',
+  }    
+
+  Naruto = NarutoChars()
+  Naruto.setDb(database) <----- Aquí
+
+```
 
   ### Worky-api
   ------------
