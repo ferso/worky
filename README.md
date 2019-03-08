@@ -38,7 +38,7 @@ La aplicación se conecta a MongoDb utilizandio la configuraxión default de Mon
   ------------------------------------
   ```
 
-  * Si se requiere configurar una base de datos de mongo con una configuración diferente, lo debes hacer en el archivo main.py
+  * Si se requiere configurar una base de datos de mongo con una configuración diferente, lo debes hacer en el archivo worky-scripts/main.py
 
   ```
   database = {
@@ -68,6 +68,18 @@ La aplicación se conecta a MongoDb utilizandio la configuraxión default de Mon
 
   ```
   - El api responde en https://localhost:1337
+
+    * Si se requiere configurar una base de datos de mongo con una configuración diferente, lo debes hacer en worky-api/config/datastores.js
+
+    ```
+    default: {
+      adapter: 'sails-mongo',
+      url: 'mongodb://127.0.0.1:27017/worky',  <---- Aquí
+    },
+
+  ```
+
+
   - Para ejecutar los tests
   ```
   sudo npm install mocha -g
