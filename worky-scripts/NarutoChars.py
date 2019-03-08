@@ -100,8 +100,8 @@ class NarutoChars:
             self.charData['content'] = self.getCharContent()
             self.charData['infobox'] = self.getCharInfobox()
 
-            # print(self.index ,':', self.charData['link']  )
-            # print('=============================================================')
+            print(self.index ,':', self.charData['link']  )
+            print('=============================================================')
             self.index = self.index + 1
             #save to mongo
             self.save(self.charData)
